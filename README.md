@@ -1,15 +1,40 @@
 # neon_course
 
-This repository contains several [jupyter](http://jupyter.org/) notebooks to help users learn to use neon. These include:
+This repository contains several [jupyter](http://jupyter.org/) notebooks to help users learn to use [neon](https://github.com/NervanaSystems/neon), our deep learning framework. For more information, see our [documentation](http://neon.nervanasys.com/docs/latest/index.html) and our [API](http://neon.nervanasys.com/docs/latest/api.html).
+
+The jupyter notebooks in this repository include:
 
 * MNIST example
-* Example of fine-tuning a pre-trained VGG network on the CIFAR-10 dataset
-* Exercise in writing your own dataset object for the SVHN dataset
+
+Comprehensive walk-through of how to use neon to build a simple model to recognize handwritten digits. Recommended as an introduction to the neon framework.
+
+* Fine-tuning
+
+A popular application of deep learning is to load a pre-trained model and fine-tune on a new dataset, sometimes with different number of categories. This example walks through how to load a VGG model that has been pre-trained on ImageNet, a large corpus of natural images belonging to 1000 categories, and re-train the final few layers on the CIFAR-10 dataset, which has only 10 categories.
+
+* Writing a custom dataset object
+
+neon provides many built-in methods for loading data from images, videos, audio, text, and [more](http://neon.nervanasys.com/docs/latest/loading_data.html). In the rare cases you may have to implement a custom dataset object. This notebooks guides users through implementing a custom dataset object for a modified version of the [Street View House Number](http://ufldl.stanford.edu/housenumbers/) (SVHN) dataset. Users will not only build a custom dataset, but also design a network to, given an image, draw a bounding box around the digit sequence.
+
 * Writing a custom activation function and a custom layer
+
+This notebook walks developers through how to implement a custom activation function and layer within neon. We implement the Affine layer, and demonstrate the speed-up difference between using a python-based computation and our own heavily optimized kernels.
+
 * Defining complex branching models
+
+When simple sequential lists of layers do not suffice for your complex models, we present how to build complex branching models within neon.
+
 * Deep Residual network on the CIFAR-10 dataset
+
+In neon, models are constructed as python lists, which makes it easy to use for-loops to define complex models that have repeated patterns, such as [deep residual networks](https://arxiv.org/abs/1512.03385). This notebook is an end-to-end walkthrough of building a deep residual network, training on the CIFAR-10 dataset, and then applying the model to predict categories on novel images.
+
 * Writing a custom callback
+
+[Callbacks](http://neon.nervanasys.com/docs/latest/callbacks.html) allow models to report back to users its progress during training. In this notebook, we present a callback that plots training cost in real-time within the jupyter notebook.
+
 * Using our visualization tools to detect and correct overfitting.
+
+Overfitting is often encountered when training deep learning models. This tutorial demonstrates how to use our visualization tools to detect when a model has overfit on the training data, and how to apply `Dropout` layers to correct the problem.
 
 For several of the guided exercises, answer keys are provided in the `answers/` folder.
 
