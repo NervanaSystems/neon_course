@@ -1,6 +1,6 @@
 # neon_course
 
-This repository contains several ipython notebooks to help users learn to use neon. These include:
+This repository contains several [jupyter](http://jupyter.org/) notebooks to help users learn to use neon. These include:
 
 * MNIST example
 * Example of fine-tuning a pre-trained VGG network on the CIFAR-10 dataset
@@ -9,9 +9,9 @@ This repository contains several ipython notebooks to help users learn to use ne
 * Defining complex branching models
 * Deep Residual network on the CIFAR-10 dataset
 * Writing a custom callback
-* Using out visualization tools to detect and correct overfitting.
+* Using our visualization tools to detect and correct overfitting.
 
-For several of the guided exercises, answer keys are provided in the answers folder.
+For several of the guided exercises, answer keys are provided in the `answers/` folder.
 
 ## Setting up notebooks on remote machines
 
@@ -35,7 +35,12 @@ Save your changes and launch the jupyter notebook:
 $ jupyter notebook
 ```
 
-From a separate machine, open your browser and point to `https://[server address]:8888` to connect to the ipython notebook.
+From a separate machine, open your browser and point to `https://[server address]:8888` to connect to the jupyter notebook.
 
+## Nervana Cloud
+
+The [Nervana Cloud](https://www.cloud.nervanasys.com/login) includes an interactive mode to launch jupyter notebooks on our Titan X GPU servers. If you have cloud credentials, launch an interactive session with the `ncloud interact` command.
+
+For more information, see: http://doc.cloud.nervanasys.com/docs/latest/interact.html
 
 
