@@ -10,15 +10,15 @@ Comprehensive walk-through of how to use neon to build a simple model to recogni
 
 ### 02 Fine-tuning
 
-A popular application of deep learning is to load a pre-trained model and fine-tune on a new dataset, sometimes with different number of categories. This example walks through how to load a VGG model that has been pre-trained on ImageNet, a large corpus of natural images belonging to 1000 categories, and re-train the final few layers on the CIFAR-10 dataset, which has only 10 categories.
+A popular application of deep learning is to load a pre-trained model and fine-tune on a new dataset that may have a different number of categories. This example walks through how to load a VGG model that has been pre-trained on ImageNet, a large corpus of natural images belonging to 1000 categories, and re-train the final few layers on the CIFAR-10 dataset, which has only 10 categories.
 
 ### 03 Writing a custom dataset object
 
-neon provides many built-in methods for loading data from images, videos, audio, text, and [more](http://neon.nervanasys.com/docs/latest/loading_data.html). In the rare cases you may have to implement a custom dataset object. This notebooks guides users through implementing a custom dataset object for a modified version of the [Street View House Number](http://ufldl.stanford.edu/housenumbers/) (SVHN) dataset. Users will not only build a custom dataset, but also design a network to, given an image, draw a bounding box around the digit sequence.
+neon provides many built-in methods for loading data from images, videos, audio, text, and [more](http://neon.nervanasys.com/docs/latest/loading_data.html). In the rare cases where you may have to implement a custom dataset object, this notebooks guides users through building a custom dataset object for a modified version of the [Street View House Number](http://ufldl.stanford.edu/housenumbers/) (SVHN) dataset. Users will not only write a custom dataset, but also design a network to, given an image, draw a bounding box around the digit sequence.
 
 ### 04 Writing a custom activation function and a custom layer
 
-This notebook walks developers through how to implement a custom activation function and layer within neon. We implement the Affine layer, and demonstrate the speed-up difference between using a python-based computation and our own heavily optimized kernels.
+This notebook walks developers through how to implement custom activation functions and layers within neon. We implement the Affine layer, and demonstrate the speed-up difference between using a python-based computation and our own heavily optimized kernels.
 
 ### 05 Defining complex branching models
 
