@@ -2,6 +2,8 @@
 
 This repository contains several [jupyter](http://jupyter.org/) notebooks to help users learn to use [neon](https://github.com/NervanaSystems/neon), our deep learning framework. For more information, see our [documentation](http://neon.nervanasys.com/docs/latest/index.html) and our [API](http://neon.nervanasys.com/docs/latest/api.html).
 
+Note: this version of the neon course are synchronized to work with neon v1.8.1, and some notebooks require installation of the aeon dataloader. For install instructions, see the [neon](http://neon.nervanasys.com)  and [aeon](http://aeon.nervanasys.com) documentation. See neon_course v1.2 for a version of this repository that works with neon version 1.2.
+
 The jupyter notebooks in this repository include:
 
 ### 01 MNIST example
@@ -37,6 +39,10 @@ In neon, models are constructed as python lists, which makes it easy to use for-
 Overfitting is often encountered when training deep learning models. This tutorial demonstrates how to use our visualization tools to detect when a model has overfit on the training data, and how to apply `Dropout` layers to correct the problem.
 
 For several of the guided exercises, answer keys are provided in the `answers/` folder.
+
+### 09 Sentiment Analysis with LSTM
+
+These two notebooks guide the user through training a recurrent neural network to classify paragraphs of movie reviews into either a positive or negative sentiment. The second notebook contains an example of inference with a trained model, including a section for users to write their own reviews and submit to the model for classification. 
 
 ### Setting up notebooks on remote machines
 
