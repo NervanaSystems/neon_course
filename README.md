@@ -2,7 +2,7 @@
 
 This repository contains several [jupyter](http://jupyter.org/) notebooks to help users learn to use [neon](https://github.com/NervanaSystems/neon), our deep learning framework. For more information, see our [documentation](http://neon.nervanasys.com/docs/latest/index.html) and our [API](http://neon.nervanasys.com/docs/latest/api.html).
 
-Note: this version of the neon course are synchronized to work with neon v1.8.1, and some notebooks require installation of the aeon dataloader. For install instructions, see the [neon](http://neon.nervanasys.com)  and [aeon](http://aeon.nervanasys.com) documentation. See neon_course v1.2 for a version of this repository that works with neon version 1.2.
+Note: this version of the neon course is synchronized to work with neon v1.8.1, and some notebooks require installation of the aeon dataloader. For install instructions, see the [neon](http://neon.nervanasys.com)  and [aeon](http://aeon.nervanasys.com) documentation. See neon_course v1.2 for a version of this repository that works with neon version 1.2.
 
 The jupyter notebooks in this repository include:
 
