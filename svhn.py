@@ -117,7 +117,7 @@ def train_model(learning_inputs,
 
     # use SumSquared cost
     cost = GeneralizedCost(costfunc=SumSquared())
-    learning_rates = [10**(-1 * (5-f)) for f in learning_inputs]
+    learning_rates = [10**(-1 * (10-f)) for f in learning_inputs]
     # learning_rates = list(base_lr * np.cumprod(factors))
     # learning_rates = [np.float(lr) for lr in learning_rates]
     stepSchedule = StepSchedule(step_config=[0, 1, 2, 3], change=learning_rates)
@@ -159,7 +159,7 @@ class Dashboard():
         output_notebook()
 
         x = [0,    1,     1,      2,     2,     3,    3,    4]
-        y = [0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01]
+        y = 8*[10 ** -7]
 
         source = ColumnDataSource(data=dict(x=x, y=y))
 
@@ -197,7 +197,7 @@ class Dashboard():
 
         # set up sliders and callback
         callbacks = [CustomJS(args=dict(source=source), code=base_code.format(k, k+1, k/2)) for k in [0, 2, 4, 6]]
-        slider = [Slider(start=0.1, end=4, value=3, step=.1, title=None, callback=C, orientation='vertical', width=80, height=50) for C in callbacks]
+        slider = [Slider(start=0.1, end=10, value=3, step=.1, title=None, callback=C, orientation='vertical', width=80, height=50) for C in callbacks]
 
         radio_group = RadioGroup(labels=[""], active=0, width=65)
 
@@ -240,8 +240,8 @@ class Dashboard():
         (cost, result) = train_model(learn_inputs, fig=self.fig, handle=self.fh, train_source=self.train_source, val_source=self.val_source)
         if cost < self.best_cost:
             self.best_cost = cost
-        print "Final Cost: {}".format(cost)
-        print "Best Cost: {}".format(self.best_cost)
+        print "This current got run a Cost: {}".format(cost)
+        print "Your best run so far had Cost: {}".format(self.best_cost)
         print "Note: lower is better."
         self.plot_results(result)
 
