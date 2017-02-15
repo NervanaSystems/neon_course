@@ -15,6 +15,8 @@ from bokeh.layouts import row, gridplot, column
 from bokeh.models import CustomJS, ColumnDataSource, Slider, Button, RadioGroup, WidgetBox
 from bokeh.io import output_notebook, show
 from bokeh.plotting import figure, gridplot, output_file, show
+import matplotlib
+import matplotlib.pyplot as plt
 
 class SVHN(NervanaDataIterator):
 
@@ -132,10 +134,19 @@ def train_model(learning_inputs,
     # run fit
     mlp.fit(train_set, optimizer=optimizer, num_epochs=4, cost=cost, callbacks=callbacks)
     metric = mlp.eval(test_set, metric=SumSquaredMetric())
+    
+    test_set.reset()
+    (X, T) = test_set.__iter__().next()
+    y = mlp.fprop(X)
+    y = y.get()
+    T = T.get()
+    result = {'img': X.get(), 'pred': y, 'gt': T}
+    
+    
     be.cleanup_backend()
     be = None
 
-    return metric
+    return (metric, result)
 
 
 class Dashboard():
@@ -209,13 +220,30 @@ class Dashboard():
 
         self.fh = show(layout, notebook_handle=True)
 
+    def plot_results(self, result):
+        plt.figure(2)
+        imgs_to_plot = [0, 1, 2, 3]
+        for i in imgs_to_plot:
+            plt.subplot(2, 2, i+1)
+
+            title = "test {}".format(i)
+            plt.imshow(result['img'][:, i].reshape(3, 64, 64).transpose(1, 2, 0))
+            y = result['pred']
+            T = result['gt']
+            ax = plt.gca()
+            ax.add_patch(plt.Rectangle((y[0,i], y[1,i]), y[2,i], y[3,i], fill=False, edgecolor="red"))
+            ax.add_patch(plt.Rectangle((T[0,i], T[1,i]), T[2,i], T[3,i], fill=False, edgecolor="blue"))
+            plt.title(title)
+            plt.axis('off')
+
     def train(self, learn_inputs):
-        cost = train_model(learn_inputs, fig=self.fig, handle=self.fh, train_source=self.train_source, val_source=self.val_source)
+        (cost, result) = train_model(learn_inputs, fig=self.fig, handle=self.fh, train_source=self.train_source, val_source=self.val_source)
         if cost < self.best_cost:
             self.best_cost = cost
         print "Final Cost: {}".format(cost)
         print "Best Cost: {}".format(self.best_cost)
         print "Note: lower is better."
+        self.plot_results(result)
 
 
 fileName = 'data/svhn_64.p'
