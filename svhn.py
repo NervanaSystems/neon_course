@@ -127,7 +127,7 @@ def train_model(learning_inputs,
     mlp = Model(layers=layers)
 
     # configure callbacks
-    callbacks = Callbacks(mlp, eval_set=test_set, eval_freq=1, progress_bar=None)
+    callbacks = Callbacks(mlp, eval_set=test_set, eval_freq=1)
     callbacks.add_callback(CostVisCallback(h=300, w=300, nepochs=4, y_range=None, fig=fig, handle=handle,
                                            train_source=train_source, val_source=val_source))
 
@@ -163,7 +163,7 @@ class Dashboard():
 
         source = ColumnDataSource(data=dict(x=x, y=y))
 
-        plot = figure(plot_width=300, plot_height=200, y_axis_type="log", y_range=[0.00001, 1], x_range=[0, 4],
+        plot = figure(plot_width=300, plot_height=200, y_axis_type="log", y_range=[0.0000000001, 1], x_range=[0, 4],
                       x_axis_label='Epoch', y_axis_label='Learning Rate')
         plot.line('x', 'y', source=source, line_width=3, line_alpha=0.6)
 
@@ -174,8 +174,8 @@ class Dashboard():
                 var f = cb_obj.value
                 x = data['x']
                 y = data['y']
-                y[{}] = Math.pow(10.0, -1.0 * (5-f))
-                y[{}] = Math.pow(10.0, -1.0 * (5-f))
+                y[{}] = Math.pow(10.0, -1.0 * (10-f))
+                y[{}] = Math.pow(10.0, -1.0 * (10-f))
                 source.trigger('change');
 
                 var command = 'learn_inputs[{}] = ' + f;
