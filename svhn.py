@@ -17,6 +17,10 @@ from bokeh.io import output_notebook, show
 from bokeh.plotting import figure, gridplot, output_file, show
 import matplotlib
 import matplotlib.pyplot as plt
+from IPython.display import display
+from IPython.display import clear_output
+import ipywidgets as widgets
+from ipywidgets import interact_manual
 
 class SVHN(NervanaDataIterator):
 
@@ -154,6 +158,7 @@ class Dashboard():
     def __init__(self):
         self.best_cost = 10000
         self.setup_dashboard()
+        self.learn_inputs = 4 * [3]
 
     def setup_dashboard(self):
         output_notebook()
@@ -178,7 +183,7 @@ class Dashboard():
                 y[{}] = Math.pow(10.0, -1.0 * (10-f))
                 source.trigger('change');
 
-                var command = 'learn_inputs[{}] = ' + f;
+                var command = 'dashboard.learn_inputs[{}] = ' + f;
                 var kernel = IPython.notebook.kernel;
                 kernel.execute(command)
             """
@@ -210,10 +215,10 @@ class Dashboard():
         #     kernel.execute(cmd, {}, {});
         # """)
 
-        button = Button(label='Train', width=300, height=50, sizing_mode='scale_width', button_type='primary')
+        # button = Button(label='Train', width=300, height=50, sizing_mode='scale_width', button_type='primary')
 
         sliders = row(radio_group, slider[0], slider[1], slider[2], slider[3])
-        settings = column(button, plot, sliders)
+        settings = column(plot, sliders)
 
 
         layout = gridplot([[settings, fig]], sizing_mode='fixed', merge_tools=True, toolbar_location=None)
@@ -236,7 +241,8 @@ class Dashboard():
             plt.title(title)
             plt.axis('off')
 
-    def train(self, learn_inputs):
+    def train(self):
+        learn_inputs = self.learn_inputs
         (cost, result) = train_model(learn_inputs, fig=self.fig, handle=self.fh, train_source=self.train_source, val_source=self.val_source)
         if cost < self.best_cost:
             self.best_cost = cost
@@ -245,9 +251,19 @@ class Dashboard():
         print "Note: lower is better."
         self.plot_results(result)
 
+    def show_button(self):
+        # button = widgets.Button(description="Train",  button_style='success', layout=widgets.Layout(width='300px', height='30px'))
+        # display(button)
+    
+        # def on_button_clicked(b):
+        #     clear_output()
+        #    self.train()
+        
+        # button.on_click(on_button_clicked)
+        interact_manual(self.train)
 
-fileName = 'data/svhn_64.p'
 print "Setting up the data..."
+fileName = 'data/svhn_64.p'
 with open(fileName) as f:
     svhn = cPickle.load(f)
 
