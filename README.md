@@ -1,3 +1,7 @@
+# DISCONTINUATION OF PROJECT #
+This project will no longer be maintained by Intel.
+Intel has ceased development and contributions including, but not limited to, maintenance, bug fixes, new releases, or updates, to this project.
+Intel no longer accepts patches to this project.
 # neon_course
 
 This repository contains several [jupyter](http://jupyter.org/) notebooks to help users learn to use [neon](https://github.com/NervanaSystems/neon), our deep learning framework. For more information, see our [documentation](http://neon.nervanasys.com/docs/latest/index.html) and our [API](http://neon.nervanasys.com/docs/latest/api.html).
